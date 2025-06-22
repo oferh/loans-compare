@@ -468,7 +468,46 @@ document.addEventListener('DOMContentLoaded', function() {
                             usePointStyle: true,
                             boxWidth: 10,
                             padding: 20
-                        }
+                        },
+                        onClick: function(e, legendItem) {
+                            var index = legendItem.datasetIndex;
+                            var ci = this.chart;
+                            var alreadyHidden = (ci.getDatasetMeta(index).hidden === null) ? false : ci.getDatasetMeta(index).hidden;
+                            var anyOthersAlreadyHidden = false;
+                            var allOthersHidden = true;
+                    
+                            ci.data.datasets.forEach(function(e, i) {
+                              var meta = ci.getDatasetMeta(i);
+                    
+                              if (i !== index) {
+                                if (meta.hidden) {
+                                  anyOthersAlreadyHidden = true;
+                                } else {
+                                  allOthersHidden = false;
+                                }
+                              }
+                            });
+                    
+                            if (alreadyHidden) {
+                              ci.getDatasetMeta(index).hidden = null;
+                            } else {
+                              ci.data.datasets.forEach(function(e, i) {
+                                var meta = ci.getDatasetMeta(i);
+                    
+                                if (i !== index) {
+                                  if (anyOthersAlreadyHidden && !allOthersHidden) {
+                                    meta.hidden = true;
+                                  } else {
+                                    meta.hidden = meta.hidden === null ? !meta.hidden : null;
+                                  }
+                                } else {
+                                  meta.hidden = null;
+                                }
+                              });
+                            }
+                    
+                            ci.update();
+                          }
                     },
                     tooltips: {
                         mode: 'nearest',
