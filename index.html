@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>השוואת מוצרי הלוואות</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content-wrapper">
+            <h1>השוואת מוצרי הלוואות</h1>
+            
+            <div class="chart-type-selector">
+                <button class="chart-btn active" data-chart-type="heatmap">מפת חום</button>
+                <button class="chart-btn" data-chart-type="table">טבלת השוואה</button>
+                <button class="chart-btn" data-chart-type="bar">טור מקובץ</button>
+                <button class="chart-btn" data-chart-type="parallel">קואורדינטות מקבילות</button>
+                <button class="chart-btn" data-chart-type="dotmatrix">מטריצת נקודות</button>
+                <button class="chart-btn" data-chart-type="smallmultiples">גרפים נפרדים</button>
+            </div>
+            
+            <div id="chart-container">
+                <!-- The selected chart will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-heatmap"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-parallel"></script>
+    <script src="script.js"></script>
+</body>
+</html>
